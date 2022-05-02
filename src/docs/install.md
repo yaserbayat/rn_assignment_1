@@ -18,11 +18,11 @@ assesment_kit_test
 	│       ├── challenge.md
 	│       ├── desc.md
 	│       └── install.md
-	├── App.css
-	├── App.js
-	├── App.test.js
+	├── Index.css
+	├── index.tsx
+	├── Index.test.js
 	├── index.css
-	├── index.js
+	├── index.tsx
 	├── logo.svg
 	└── serviceWorker.js
 ```
