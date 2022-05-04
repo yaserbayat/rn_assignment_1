@@ -1,5 +1,5 @@
 const KIT_SAMPLE = {
-    title : "Java Developer Assesment Kit",
+    title : "Java Developer Assessment Kit",
     questions  : [
         {
             type : "YON",

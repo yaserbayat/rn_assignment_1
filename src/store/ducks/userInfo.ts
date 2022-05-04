@@ -2,7 +2,7 @@ export enum USER_ROLE {
     CANDIDATE = "candidate",
     ADMIN = 'admin',
 }
-export interface UserInfo {
+export interface IUserInfo {
     id: number,
     password: string,
     name: string,
@@ -17,10 +17,10 @@ export interface IAction<T> {
 // Actions
 export const SET_USER_INFO = 'user/SET';
 export const RESET_USER_INFO = 'user/RESET';
-const initialState: UserInfo | {} = {};
+const initialState: IUserInfo | {} = {};
 
 // Reducer
-const userInfo = (state = initialState, action: IAction<UserInfo>) => {
+const userInfo = (state = initialState, action: IAction<IUserInfo>) => {
     switch (action.type) {
         case SET_USER_INFO:
             return {...state, ...action.payload};
@@ -33,7 +33,7 @@ const userInfo = (state = initialState, action: IAction<UserInfo>) => {
 };
 
 //Action creators
-export const setUserInfo = (payload: UserInfo) => {
+export const setUserInfo = (payload: IUserInfo) => {
     return {
         payload,
         type: SET_USER_INFO

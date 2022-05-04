@@ -1,14 +1,14 @@
 import USERS from "data/users";
-import {IAction, UserInfo} from "./userInfo";
+import {IAction, IUserInfo} from "./userInfo";
 
 
 // Actions
 export const SET_USERS = 'users/SET';
 export const RESET_USERS = 'users/RESET';
 
-const initialState: UserInfo[] = USERS
+const initialState: IUserInfo[] = USERS
 // Reducer
-const users = (state = initialState, action: IAction<UserInfo>) => {
+const users = (state = initialState, action: IAction<IUserInfo>) => {
     switch (action.type) {
         case SET_USERS:
             return [...state, action.payload];
@@ -20,7 +20,7 @@ const users = (state = initialState, action: IAction<UserInfo>) => {
 }
 
 // Action creators
-export const setUsers = (payload: UserInfo) => {
+export const setUsers = (payload: IUserInfo) => {
     return {
         payload,
         type: SET_USERS,

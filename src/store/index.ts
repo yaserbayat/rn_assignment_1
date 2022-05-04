@@ -10,7 +10,7 @@ const rootReducers = combineReducers(reducers)
 const persistConfig = {
     key: 'root',
     storage: storage,
-    whitelist: ['userInfo', 'users'],
+    whitelist: ['userInfo', 'users', 'questionTypes', 'assessmentsKits'],
 };
 const persistedReducer = persistReducer(persistConfig, rootReducers);
 
@@ -24,7 +24,7 @@ const configStore = () => {
 
 type ReduxStoreType = { store: Store; persist: Persistor };
 const reduxStore: ReduxStoreType = configStore();
-
+export type RootStore = ReturnType<typeof rootReducers>;
 
 export const persist = reduxStore.persist;
 export const store = reduxStore.store;

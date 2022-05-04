@@ -10,7 +10,7 @@ Roughly you will have **one day** to do it in.
 
 ## The task
 
-We would like you to implement a simple Web application to define assesment kits including questions for job candidates. Also job candidates can login to the application and answer to the assesment kits.
+We would like you to implement a simple Web application to define assesment kits including questions for job candidates. Also job candidates can log in to the application and answer to the assesment kits.
 
 The following user stories should be implemented:
 1) As an Admin user, I need to login to the application (users list is inside `src/data/users.js`) and define new assesment kits (You can find a sample kit in `/src/data/kit_sample.js` and also question types in `src/data/question_types.js`).

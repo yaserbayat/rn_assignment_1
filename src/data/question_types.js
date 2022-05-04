@@ -6,12 +6,12 @@ const QUESTION_TYPES = [
     },
     {
         id : 2,
-        "title" : "Multi choise question",
+        "title" : "Multi choice question",
         "key" : "MCQ"
     },
     {
         id : 3,
-        "title" : "Descriptional Question",
+        "title" : "Descriptive Question",
         "key" : "DQ"
     }
 ]
