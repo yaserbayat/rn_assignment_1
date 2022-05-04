@@ -14,8 +14,8 @@ We would like you to implement a simple Web application to define assesment kits
 
 The following user stories should be implemented:
 1) As an Admin user, I need to login to the application (users list is inside `src/data/users.js`) and define new assesment kits (You can find a sample kit in `/src/data/kit_sample.js` and also question types in `src/data/question_types.js`).
-Assesment kits should be stored and persisted and also Admin user can "CRUD" these kits.
-2) As an Admin user I need to see list of assesments that are answered by candidates.
+Assessment kits should be stored and persisted and also Admin user can "CRUD" these kits.
+2) As an Admin user I need to see list of assessments that are answered by candidates.
 2) As a Candidate user I need to see assesment kits defined by admin, select a kit and start answering to kit questions. My Answers should be stored and persisted.
 3) As a Candidate user I need to see list of kits that I answered before.
 
