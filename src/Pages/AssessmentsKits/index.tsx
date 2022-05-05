@@ -1,18 +1,24 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { FormApi } from "final-form";
 import Link from "components/Link";
 import KitForm from "components/KitForm";
-import { addKit, IAssessmentsKit } from "store/ducks/assessmentsKits";
+import { addKit, deleteKit, IAssessmentsKit } from "store/ducks/assessmentsKits";
+import Button from "../../components/Button";
 
 
 const AssessmentsKits = (props: { isAdmin: boolean }) => {
   const dispatch = useDispatch();
   const { assessmentsKits }: { assessmentsKits: IAssessmentsKit[] } = useSelector((state: any) => state);
   const handleSubmit = (values: any, form: FormApi) => {
-    dispatch(addKit(values));
+    const newValues = {
+      ...values,
+      questions: values.questions.map((item: any) => ({ ...item, answers: item.answers.split(',') }))
+    }
+    dispatch(addKit(newValues));
     form.reset();
   };
+
   return (
     <div className='col-12 col-sm-6 mx-auto'>
       {props.isAdmin ? <KitForm onSubmit={handleSubmit}/> : null}
@@ -22,11 +28,14 @@ const AssessmentsKits = (props: { isAdmin: boolean }) => {
           <div className="card-body">
             <h5 className="card-title">{kit.title}</h5>
             <p className="card-text">{kit.title}</p>
-            <Link
-              to={`${kit.title}`}
-              className='btn btn-primary text-light'
-              title='Use this Kit'
-            />
+            <div className='d-flex justify-content-between'>
+              <Link
+                to={`${kit.title}`}
+                className='btn btn-primary d-inline text-light'
+                title='Use this Kit'
+              />
+              <Button className='btn-danger' title='Delete' onClick={() => dispatch(deleteKit(kit.title))}/>
+            </div>
           </div>
         </div>
       ))}
