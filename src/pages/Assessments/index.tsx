@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { IAssessment } from "store/ducks/assessments";
 import { IUserInfo } from "store/ducks/userInfo";
 import RadioButton from "components/RadioButton";
+import { isEmpty } from "../../utils/Helpers";
 
 interface IDetails {
   assessments: IAssessment[];
@@ -19,6 +20,7 @@ const Assessments = () => {
 
   return (
     <div className='col-12 col-sm-6 mx-auto'>
+      {!assessments.length && <h4 className='text-center'>There is no assessments yet.</h4>}
       {Object.values(assessmentsBaseOnUser).map((item: IAssessment[], indexOfId) => {
         const id = +Object.keys(assessmentsBaseOnUser)[indexOfId];
         const user = users.filter(user => user.id === id)?.[0];

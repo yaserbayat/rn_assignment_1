@@ -32,7 +32,7 @@ const Header: FC<IHeader> = (props) => {
               />
             </>
           ) : (
-            <h3>welcome here</h3>
+            <h3 className='text-light'>welcome here</h3>
           )}
         </div>
       </header>

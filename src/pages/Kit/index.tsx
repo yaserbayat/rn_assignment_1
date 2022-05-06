@@ -23,7 +23,9 @@ const Kit = () => {
   const kit = assessmentsKits?.filter(kit => kit.title === title)?.[0];
 
   const [ userAnswersKit, setUserAnswersKit ] = useState<string[]>(
-    assessments?.filter(item => item.userId === userInfo.id && item.title === kit?.title)[0]?.userAnswers ?? []
+    assessments?.filter(
+      item => item.userId === userInfo.id && item.title === kit?.title
+    )[0]?.userAnswers ?? []
   );
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
