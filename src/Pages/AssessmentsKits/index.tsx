@@ -8,6 +8,7 @@ import Button from "../../components/Button";
 
 
 const AssessmentsKits = (props: { isAdmin: boolean }) => {
+  const { isAdmin } = props;
   const dispatch = useDispatch();
   const { assessmentsKits }: { assessmentsKits: IAssessmentsKit[] } = useSelector((state: any) => state);
   const handleSubmit = (values: any, form: FormApi) => {
@@ -21,7 +22,7 @@ const AssessmentsKits = (props: { isAdmin: boolean }) => {
 
   return (
     <div className='col-12 col-sm-6 mx-auto'>
-      {props.isAdmin ? <KitForm onSubmit={handleSubmit}/> : null}
+      {isAdmin ? <KitForm onSubmit={handleSubmit}/> : null}
       <h1 className='text-center mt-3'>Assessments Kits</h1>
       {assessmentsKits?.map(kit => (
         <div className="card mb-3" key={kit.title}>
@@ -34,7 +35,13 @@ const AssessmentsKits = (props: { isAdmin: boolean }) => {
                 className='btn btn-primary d-inline text-light'
                 title='Use this Kit'
               />
-              <Button className='btn-danger' title='Delete' onClick={() => dispatch(deleteKit(kit.title))}/>
+              {isAdmin && (
+                <Button
+                  className='btn-danger'
+                  title='Delete'
+                  onClick={() => dispatch(deleteKit(kit.title))}
+                />
+              )}
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
-import React from 'react';
-import {Route, Routes} from 'react-router-dom';
-import {useDispatch, useSelector} from "react-redux";
+import React, { useEffect } from 'react';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
 import Header from 'components/Header';
 import Assessments from 'Pages/Assessments';
 import User from 'Pages/User';
@@ -8,18 +8,26 @@ import AssessmentsKits from 'Pages/AssessmentsKits';
 import QuestionTypes from 'Pages/QuestionTypes';
 import Login from 'Pages/Login';
 import Kit from "Pages/Kit";
-import {IUserInfo, resetUserInfo, USER_ROLE} from "store/ducks/userInfo";
+import { IUserInfo, resetUserInfo, USER_ROLE } from "store/ducks/userInfo";
 import PrivateRoute from 'utils/PrivateRoute';
-import {isEmpty} from "utils/Helpers";
+import { isEmpty } from "utils/Helpers";
 import './style.css';
 
 
-function App() {
-  const {userInfo}: { userInfo: IUserInfo } = useSelector((state: any) => state);
+const App = () => {
+  const location = useLocation();
+  const { pathname } = location;
+  const navigate = useNavigate();
+  const { userInfo }: { userInfo: IUserInfo } = useSelector((state: any) => state);
   const dispatch = useDispatch();
+
   const handleLogOut = () => dispatch(resetUserInfo());
   const isLogin = !isEmpty(userInfo);
   const isAdmin = userInfo?.role === USER_ROLE.ADMIN;
+  useEffect(() => {
+    if (!isLogin) navigate('/login');
+    if (window.scrollTo) window.scrollTo(0, 0);
+  }, [pathname])
 
   return (
     <div className="App">
@@ -38,6 +46,6 @@ function App() {
       </main>
     </div>
   );
-}
+};
 
 export default App;

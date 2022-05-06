@@ -1,41 +1,52 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import RadioButton from "components/RadioButton";
 import { IAssessmentsKit } from "store/ducks/assessmentsKits";
 import { IUserInfo } from "store/ducks/userInfo";
-import { addAssessment, IAssessment } from "store/ducks/assessments";
+import { addAssessment, IAssessment, updateAssessment } from "store/ducks/assessments";
 
 interface IDetails {
   assessmentsKits: IAssessmentsKit[];
-  userInfo: IUserInfo
+  userInfo: IUserInfo;
+  assessments: IAssessment[];
 }
 
 const Kit = () => {
-  const [ userAnswers, setUserAnswers ] = useState<IAssessment>({
-    userId: 0,
-    userAnswers: [],
-    title: '',
-    questions: []
-  });
   const { title = '' } = useParams();
   const {
     assessmentsKits,
-    userInfo
+    userInfo,
+    assessments
   }: IDetails = useSelector((state: any) => state);
   const dispatch = useDispatch();
-
   const kit = assessmentsKits?.filter(kit => kit.title === title)?.[0];
+
+  const [ userAnswersKit, setUserAnswersKit ] = useState<string[]>(
+    assessments?.filter(item => item.userId === userInfo.id && item.title === kit?.title)[0]?.userAnswers ?? []
+  );
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
     const { value } = e.target;
-    setUserAnswers(prevState => ({ ...prevState, userAnswers: [ ...prevState.userAnswers, value ] }))
-    if (index === kit?.questions.length - 1) {
-      dispatch(addAssessment({
-        ...kit,
-        userId: userInfo.id,
-        userAnswers: [ ...userAnswers.userAnswers, value ]
-      }))
+    const isLastOne = index === kit?.questions.length - 1;
+
+    if (userAnswersKit?.[index]) {
+      const answers = userAnswersKit;
+      answers[index] = value;
+
+      if (isLastOne) {
+        dispatch(updateAssessment(userInfo.id, title, answers));
+      }
+      setUserAnswersKit(answers)
+    } else {
+      if (isLastOne) {
+        dispatch(addAssessment({
+          ...kit,
+          userId: userInfo.id,
+          userAnswers: [ ...userAnswersKit, value ]
+        }))
+      }
+      setUserAnswersKit(prevState => ([ ...prevState, value ]))
     }
   };
 

@@ -9,7 +9,7 @@ import Button from "components/Button";
 const formFields = [
   { name: 'question', label: 'question', required: true },
   { name: 'type', label: 'question type', placeholder: 'YON, MCQ, ...', required: true },
-  { name: 'correct_answer', label: 'correct answer' },
+  { name: 'correct_answer', label: 'correct answer', placeholder: 'index of correct answer' },
   { name: 'answers', label: 'answers', placeholder: 'comma separated values' },
 ];
 

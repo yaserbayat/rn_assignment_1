@@ -9,7 +9,7 @@
 
 ## Quick start
 
-1. Make sure that you have Node.js >=14 and npm v5 and yarn v1.22.1 or above installed.
+1. Make sure that you have Node.js >=v14 and npm v5 and yarn v1.22.1 or above installed.
 2. Run below commands.
 
 ## Setup

@@ -14,6 +14,14 @@ const USERS = [
         email : "j.doe@qpage.one",
         password : "4#@$21$$!@3$",
         role : "candidate"
+    },
+    {
+        id : 3,
+        name : "Bob",
+        family : "Douglas",
+        email : "b.douglas@qpage.one",
+        password : "5#@$31$$!@4$",
+        role : "candidate"
     }
 ];
 
